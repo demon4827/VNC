@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNC Web Connector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>VNC Web Connector</h1>
+    <p>Введите IP и порт VNC-сервера:</p>
+    
+    <input type="text" id="vncIp" placeholder="IP (например: 192.168.1.100)" required>
+    <input type="number" id="vncPort" placeholder="Порт (обычно 5900)" value="5900" required>
+    <button onclick="connectVNC()">Подключиться</button>
+
+    <script>
+        function connectVNC() {
+            const ip = document.getElementById("vncIp").value.trim();
+            const port = document.getElementById("vncPort").value.trim();
+            
+            if (!ip || !port) {
+                alert("Введите IP и порт!");
+                return;
+            }
+
+            // Формируем URL для noVNC (можно заменить на свой сервер noVNC)
+            const noVncUrl = `https://novnc.com/noVNC/vnc.html?host=${ip}&port=${port}&password=&autoconnect=true`;
+            
+            // Открываем в новом окне
+            window.open(noVncUrl, "_blank");
+        }
+    </script>
+</body>
+</html>
